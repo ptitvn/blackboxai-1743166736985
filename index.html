@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hệ thống đăng nhập</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .error-message {
+            color: #ef4444;
+            font-size: 0.875rem;
+            margin-top: 0.25rem;
+        }
+        .menu-item:hover .submenu {
+            display: block;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen flex flex-col">
+    <!-- Header -->
+    <header class="bg-blue-600 text-white shadow-md">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <i class="fas fa-lock text-2xl"></i>
+                <h1 class="text-xl font-bold">Hệ thống đăng nhập</h1>
+            </div>
+            <nav class="hidden md:block">
+                <ul class="flex space-x-6">
+                    <li><a href="index.html" class="hover:text-blue-200">Trang chủ</a></li>
+                    <li class="menu-item relative">
+                        <a href="#" class="hover:text-blue-200 flex items-center">
+                            Tài khoản <i class="fas fa-chevron-down ml-1 text-sm"></i>
+                        </a>
+                        <ul class="submenu absolute hidden bg-white text-gray-800 rounded shadow-lg py-1 w-48">
+                            <li><a href="login.html" class="block px-4 py-2 hover:bg-blue-100">Đăng nhập</a></li>
+                            <li><a href="register.html" class="block px-4 py-2 hover:bg-blue-100">Đăng ký</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+            <button class="md:hidden text-xl">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow container mx-auto px-4 py-8">
+        <div class="max-w-md mx-auto bg-white rounded-lg shadow-md overflow-hidden">
+            <div class="p-6">
+                <h2 class="text-2xl font-bold text-gray-800 mb-6">Đăng nhập</h2>
+                <form id="loginForm" class="space-y-4">
+                    <div>
+                        <label for="loginEmail" class="block text-sm font-medium text-gray-700">Email</label>
+                        <input type="email" id="loginEmail" name="email" 
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                        <div id="loginEmailError" class="error-message"></div>
+                    </div>
+                    <div>
+                        <label for="loginPassword" class="block text-sm font-medium text-gray-700">Mật khẩu</label>
+                        <input type="password" id="loginPassword" name="password" 
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                        <div id="loginPasswordError" class="error-message"></div>
+                    </div>
+                    <div>
+                        <button type="submit" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                            Đăng nhập
+                        </button>
+                    </div>
+                </form>
+                <div class="mt-4 text-center">
+                    <p class="text-sm text-gray-600">Chưa có tài khoản? <a href="register.html" class="text-blue-600 hover:text-blue-500">Đăng ký ngay</a></p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-6">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <h3 class="text-lg font-semibold">Hệ thống đăng nhập</h3>
+                    <p class="text-gray-400 mt-1">© 2023 Bản quyền thuộc về chúng tôi</p>
+                </div>
+                <div class="flex space-x-4">
+                    <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Check if user is logged in
+        const loggedInUser = JSON.parse(sessionStorage.getItem('loggedInUser'));
+        if (loggedInUser) {
+            window.location.href = 'home.html';
+        }
+    </script>
+    <script src="auth.js"></script>
+</body>
+</html>
